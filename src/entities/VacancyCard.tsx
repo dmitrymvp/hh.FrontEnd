@@ -1,10 +1,10 @@
 import { Card, Group, Title, Text, Button, Badge } from '@mantine/core';
 
-const VacancyCard = () => {
+const VacancyCard = ({ name }) => {
   return (
     <Card w={659} p={24}>
       <Title order={2} c="#364FC7" fw={600} size={20} ta="left">
-        Наименование вакансии
+        {name}
       </Title>
       <Group mt={8}>
         <Text>100 000 - 970 000</Text>
