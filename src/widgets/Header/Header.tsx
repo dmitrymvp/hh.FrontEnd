@@ -1,7 +1,6 @@
 import {
   Anchor,
   Container,
-  Flex,
   Group,
   Image,
   SimpleGrid,
