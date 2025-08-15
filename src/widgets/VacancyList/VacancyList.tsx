@@ -17,7 +17,14 @@ const VacancyList = () => {
     <Container size={659} p={0}>
       <ul>
         {vacancyList.map((item) => (
-          <VacancyCard name={item.name} />
+          <>
+          <VacancyCard 
+            name={item.name} 
+            salaryMin={item.salaryMin} 
+            salaryMax={item.salaryMax}
+            experience={item.experience}/>
+          <Space h='md'></Space>
+          </>
         ))}
       </ul>
       <Center mt={24}>

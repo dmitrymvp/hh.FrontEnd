@@ -1,14 +1,14 @@
 import { Card, Group, Title, Text, Button, Badge } from '@mantine/core';
 
-const VacancyCard = ({ name }) => {
+const VacancyCard = ({ name, salaryMin, salaryMax, experience }) => {
   return (
     <Card w={659} p={24}>
       <Title order={2} c="#364FC7" fw={600} size={20} ta="left">
         {name}
       </Title>
       <Group mt={8}>
-        <Text>100 000 - 970 000</Text>
-        <Text c="dimmed"> Опыт 3 года</Text>
+        <Text>{salaryMin} - {salaryMax}</Text>
+        <Text c="dimmed">{experience}</Text>
       </Group>
       <Text c="dimmed" size="sm" ta="left" mt={16}>
         Компания
