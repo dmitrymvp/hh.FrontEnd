@@ -1,7 +1,7 @@
 export enum WorkFormat {
-  ON_SITE = 'ОФИС',
-  HYBRID = 'ГИБРИД',
-  REMOTE = 'УДАЛЁННО',
+  ON_SITE = 'ON_SITE',
+  HYBRID = 'HYBRID',
+  REMOTE = 'REMOTE',
 }
 
 export interface Vacancy {

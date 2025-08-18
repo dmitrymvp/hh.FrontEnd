@@ -1,10 +1,21 @@
 import { Card, Group, Title, Text, Button, Badge } from '@mantine/core';
-import type { Vacancy } from '../shared/types/types';
+import { type Vacancy, WorkFormat } from '../shared/types/types';
 
-const workFormatInfo = {
-  ON_SITE: { text: 'ОФИС', color: '#0F0F101A', textColor: 'black' },
-  HYBRID: { text: 'ГИБРИД', color: '#0F0F10', textColor: 'white' },
-  REMOTE: { text: 'МОЖНО УДАЛЁННО', color: '#4263EB', textColor: 'white' },
+const workFormatInfo: Record<
+  WorkFormat,
+  { text: string; color: string; textColor: string }
+> = {
+  [WorkFormat.ON_SITE]: {
+    text: 'ОФИС',
+    color: '#0F0F101A',
+    textColor: 'black',
+  },
+  [WorkFormat.HYBRID]: { text: 'ГИБРИД', color: '#0F0F10', textColor: 'white' },
+  [WorkFormat.REMOTE]: {
+    text: 'МОЖНО УДАЛЁННО',
+    color: '#4263EB',
+    textColor: 'white',
+  },
 };
 
 const VacancyCard = ({
@@ -17,7 +28,7 @@ const VacancyCard = ({
   workFormat,
   vacancyUrl,
 }: Vacancy) => {
-  const format = workFormatInfo[workFormat];
+  const format = workFormat ? workFormatInfo[workFormat] : undefined;
 
   const salary = () => {
     if (salaryMin && salaryMax) {

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { screen } from '@testing-library/react';
 import VacancyCard from './VacancyCard';
-import type { Vacancy } from '../shared/types/types';
+import { type Vacancy, WorkFormat } from '../shared/types/types';
 import { renderWithProviders } from '../test/utils';
 
 const mock: Vacancy = {
@@ -12,7 +12,7 @@ const mock: Vacancy = {
   experience: '3–5 лет',
   employerName: 'Компания',
   area: 'Москва',
-  workFormat: 'ON_SITE',
+  workFormat: WorkFormat.ON_SITE,
   vacancyUrl: 'https://example.com',
 };
 
