@@ -7,24 +7,31 @@ import { fetchVacancyList } from '../../App/store/reducers/VacancyThunk';
 
 const VacancyList = () => {
   const dispatch = useAppDispatch();
-  const { vacancyList } = useAppSelector((state) => state.vacancyReducer);
+  const { vacancyList, city, currentPage, skills } = useAppSelector(
+    (state) => state.vacancyReducer,
+  );
 
   useEffect(() => {
     dispatch(fetchVacancyList());
-  }, [dispatch]);
+  }, [dispatch, city, currentPage, skills]);
 
   return (
     <Container size={659} p={0}>
       <ul>
         {vacancyList.map((item) => (
-          <>
-          <VacancyCard 
-            name={item.name} 
-            salaryMin={item.salaryMin} 
-            salaryMax={item.salaryMax}
-            experience={item.experience}/>
-          <Space h='md'></Space>
-          </>
+          <li key={item.id}>
+            <VacancyCard
+              name={item.name}
+              salaryMin={item.salaryMin}
+              salaryMax={item.salaryMax}
+              experience={item.experience}
+              employerName={item.employerName}
+              area={item.area}
+              workFormat={item.workFormat}
+              vacancyUrl={item.vacancyUrl}
+            />
+            <Space h="md" />
+          </li>
         ))}
       </ul>
       <Center mt={24}>

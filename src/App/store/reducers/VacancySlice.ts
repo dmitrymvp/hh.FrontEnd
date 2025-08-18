@@ -1,22 +1,59 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { fetchVacancyList } from './VacancyThunk';
+import type { Vacancy } from '../../../shared/types/types';
 
-interface VacancyState {
-  vacancyList: [];
+export interface VacancyState {
+  vacancyList: Vacancy[];
   status: 'idle' | 'loading' | 'success' | 'error';
   error: string;
+  skills: Array<string>;
+  skillInput: string;
+  searchInput: string;
+  city: string;
+  pages: number;
+  currentPage: number;
 }
 
 export const initialState: VacancyState = {
   vacancyList: [],
   status: 'idle',
   error: '',
+  skills: ['TypeScript', 'React', 'Redux'],
+  skillInput: '',
+  searchInput: '',
+  city: '113',
+  pages: 0,
+  currentPage: 1,
 };
 
 export const vacancySlice = createSlice({
   name: 'vacancy',
   initialState,
-  reducers: {},
+  reducers: {
+    setSkillInput(state, action: PayloadAction<string>) {
+      state.skillInput = action.payload;
+    },
+    addSkill(state) {
+      state.skillInput = state.skillInput.trim();
+
+      if (state.skillInput !== '') {
+        state.skills.push(state.skillInput);
+        state.skillInput = '';
+      }
+    },
+    removeSkill(state, action: PayloadAction<string>) {
+      state.skills = state.skills.filter((skill) => skill !== action.payload);
+    },
+    setSearchInput(state, action: PayloadAction<string>) {
+      state.searchInput = action.payload;
+    },
+    setCity(state, action: PayloadAction<string>) {
+      state.city = action.payload;
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
+      state.currentPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchVacancyList.pending, (state) => {
@@ -24,12 +61,22 @@ export const vacancySlice = createSlice({
       })
       .addCase(fetchVacancyList.fulfilled, (state, action) => {
         state.status = 'success';
-        state.vacancyList = action.payload;
+        state.vacancyList = action.payload.vacancyItem;
+        state.pages = action.payload.pages;
       })
       .addCase(fetchVacancyList.rejected, (state) => {
         state.status = 'error';
       });
   },
 });
+
+export const {
+  setSkillInput,
+  addSkill,
+  removeSkill,
+  setSearchInput,
+  setCity,
+  setCurrentPage,
+} = vacancySlice.actions;
 
 export default vacancySlice.reducer;

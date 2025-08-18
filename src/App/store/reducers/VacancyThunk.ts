@@ -1,21 +1,55 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { BASE_URL } from '../../../shared/api/api';
 
 export const fetchVacancyList = createAsyncThunk(
   'vacancy/fetchVacancy',
-  async (_, { rejectWithValue }) => {
+  async (_, { rejectWithValue, getState }) => {
+    const state = getState();
+    const { searchInput, city, currentPage, skills } = state.vacancyReducer;
+
+    console.log(city);
     try {
-      const responce = await axios.get(
-        'https://api.hh.ru/vacancies?industry=7&professional_role=96',
-      );
-      return responce.data.items.map((item) => ({
-        id: item.id,
-        name: item.name,
-        area: item.area.name,
-        salaryMin: item.salary?.from,
-        salaryMax: item.salary?.to,
-        experience: item.experience?.name,
-      }));
+      const params = new URLSearchParams();
+      params.append('per_page', '10');
+      params.append('page', (currentPage - 1).toString());
+      params.append('industry', '7');
+      params.append('professional_role', '96');
+      params.append('search_field', 'name');
+      params.append('search_field', 'company_name');
+      params.append('search_field', 'description');
+      params.append('area', city);
+
+      const skillsQuery =
+        skills && skills.length
+          ? skills.map((skill: string) => `"${skill}"`).join(' AND ')
+          : '';
+
+      const textQuery =
+        searchInput && skillsQuery
+          ? `"${searchInput.trim()}" AND ${skillsQuery}`
+          : searchInput && !skillsQuery
+            ? `"${searchInput.trim()}"`
+            : `${skillsQuery}`;
+
+      params.append('text', textQuery);
+
+      const response = await axios.get(`${BASE_URL}?${params}`);
+
+      return {
+        vacancyItem: response.data.items.map((item) => ({
+          id: item.id,
+          name: item.name,
+          area: item.area.name,
+          salaryMin: item.salary?.from,
+          salaryMax: item.salary?.to,
+          experience: item.experience?.name,
+          employerName: item.employer?.name,
+          workFormat: item.work_format[0]?.id,
+          vacancyUrl: item.alternate_url,
+        })),
+        pages: response.data.pages,
+      };
     } catch (e) {
       return rejectWithValue('Не удалось загрузить список вакансий');
     }

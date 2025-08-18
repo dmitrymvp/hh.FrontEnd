@@ -1,11 +1,8 @@
 import { http, HttpResponse } from 'msw';
-import { productResponse } from './response';
+import { vacanciesResponse } from './response';
 
 export const handlers = [
-  http.get(
-    'https://res.cloudinary.com/sivadass/raw/upload/v1535817394/json/products.json',
-    () => {
-      return HttpResponse.json(productResponse);
-    },
-  ),
+  http.get('https://api.hh.ru/vacancies', () => {
+    return HttpResponse.json(vacanciesResponse);
+  }),
 ];
