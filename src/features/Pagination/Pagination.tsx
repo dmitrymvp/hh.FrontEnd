@@ -14,7 +14,6 @@ const PaginationList = () => {
       value={currentPage}
       onChange={(page) => {
         dispatch(setCurrentPage(page));
-        console.log(currentPage);
       }}
       withEdges
     />

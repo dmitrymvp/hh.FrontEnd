@@ -17,7 +17,6 @@ export const fetchVacancyList = createAsyncThunk<
   const state = getState();
   const { searchInput, city, currentPage, skills } = state.vacancyReducer;
 
-  console.log(city);
   try {
     const params = new URLSearchParams();
     params.append('per_page', '10');
