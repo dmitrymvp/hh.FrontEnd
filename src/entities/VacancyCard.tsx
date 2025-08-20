@@ -1,5 +1,6 @@
 import { Card, Group, Title, Text, Button, Badge } from '@mantine/core';
 import { type Vacancy, WorkFormat } from '../shared/types/types';
+import { Link } from 'react-router-dom';
 
 const workFormatInfo: Record<
   WorkFormat,
@@ -19,6 +20,7 @@ const workFormatInfo: Record<
 };
 
 const VacancyCard = ({
+  id,
   name,
   salaryMin,
   salaryMax,
@@ -75,7 +77,9 @@ const VacancyCard = ({
         {area}
       </Text>
       <Group mt={16}>
-        <Button color="#0F0F10">Смотреть вакансию</Button>
+        <Link to={`vacancies/${id}`}>
+          <Button color="#0F0F10">Смотреть вакансию</Button>
+        </Link>
         <Button
           color="#0F0F101A"
           c="black"

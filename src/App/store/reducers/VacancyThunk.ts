@@ -55,6 +55,8 @@ export const fetchVacancyList = createAsyncThunk<
         employerName: item.employer?.name,
         workFormat: item.work_format[0]?.id,
         vacancyUrl: item.alternate_url,
+        requirement: item.snippet?.requirement,
+        responsibility: item.snippet?.responsibility,
       })),
       pages: response.data.pages,
     };

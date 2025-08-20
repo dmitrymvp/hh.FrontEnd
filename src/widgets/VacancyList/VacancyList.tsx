@@ -21,6 +21,7 @@ const VacancyList = () => {
         {vacancyList.map((item) => (
           <li key={item.id}>
             <VacancyCard
+              id={item.id}
               name={item.name}
               salaryMin={item.salaryMin}
               salaryMax={item.salaryMax}

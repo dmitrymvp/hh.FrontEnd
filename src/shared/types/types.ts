@@ -14,4 +14,6 @@ export interface Vacancy {
   employerName?: string;
   workFormat?: WorkFormat;
   vacancyUrl: string;
+  requirement?: string;
+  responsibility?: string;
 }

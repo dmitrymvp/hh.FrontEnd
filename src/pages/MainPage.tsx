@@ -1,5 +1,4 @@
 import { Title, Stack, Container, Divider, Flex, Grid } from '@mantine/core';
-import Header from '../widgets/Header/Header';
 import SearchBar from '../widgets/SearchBar/SearchBar';
 import VacancyList from '../widgets/VacancyList/VacancyList';
 import VacancyFilter from '../widgets/VacancyFilter/VacancyFilter';
@@ -7,7 +6,6 @@ import VacancyFilter from '../widgets/VacancyFilter/VacancyFilter';
 const MainPage = () => {
   return (
     <div>
-      <Header />
       <Container pb={24} pt={24} pl={0} pr={0} size={1000}>
         <Flex justify="space-between">
           <Stack align="flex-start" justify="center" gap={4}>
