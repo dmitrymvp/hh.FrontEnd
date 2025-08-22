@@ -30,6 +30,7 @@ const VacancyList = () => {
               area={item.area}
               workFormat={item.workFormat}
               vacancyUrl={item.vacancyUrl}
+              // urlCompany={item.urlCompany}
             />
             <Space h="md" />
           </li>

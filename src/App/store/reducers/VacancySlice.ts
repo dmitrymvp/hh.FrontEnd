@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import { fetchVacancyList } from './VacancyThunk';
+import { fetchVacancyById, fetchVacancyList } from './VacancyThunk';
 import type { Vacancy } from '../../../shared/types/types';
 
 export interface VacancyState {
@@ -12,6 +12,7 @@ export interface VacancyState {
   city: string;
   pages: number;
   currentPage: number;
+  currentVacancy: Vacancy | null;
 }
 
 export const initialState: VacancyState = {
@@ -24,6 +25,7 @@ export const initialState: VacancyState = {
   city: '113',
   pages: 0,
   currentPage: 1,
+  currentVacancy: null,
 };
 
 export const vacancySlice = createSlice({
@@ -65,6 +67,16 @@ export const vacancySlice = createSlice({
         state.pages = action.payload.pages;
       })
       .addCase(fetchVacancyList.rejected, (state) => {
+        state.status = 'error';
+      })
+      .addCase(fetchVacancyById.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchVacancyById.fulfilled, (state, action) => {
+        state.status = 'success';
+        state.currentVacancy = action.payload
+      })
+      .addCase(fetchVacancyById.rejected, (state) => {
         state.status = 'error';
       });
   },

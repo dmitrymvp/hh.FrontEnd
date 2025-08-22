@@ -29,6 +29,7 @@ const VacancyCard = ({
   area,
   workFormat,
   vacancyUrl,
+
 }: Vacancy) => {
   const format = workFormat ? workFormatInfo[workFormat] : undefined;
 

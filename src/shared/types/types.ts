@@ -13,7 +13,11 @@ export interface Vacancy {
   experience?: string;
   employerName?: string;
   workFormat?: WorkFormat;
-  vacancyUrl: string;
-  requirement?: string;
-  responsibility?: string;
+  vacancyUrl?: string;
+  vacancyDescription?: string;
+}
+
+export interface FetchVacancyListType {
+  vacancyItem: Vacancy[];
+  pages: number;
 }

@@ -1,13 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { BASE_URL } from '../../../shared/api/api';
-import type { Vacancy } from '../../../shared/types/types';
+import type { FetchVacancyListType, Vacancy } from '../../../shared/types/types';
 import type { RootState } from '../store';
 
-interface FetchVacancyListType {
-  vacancyItem: Vacancy[];
-  pages: number;
-}
+
 
 export const fetchVacancyList = createAsyncThunk<
   FetchVacancyListType,
@@ -43,7 +40,6 @@ export const fetchVacancyList = createAsyncThunk<
     params.append('text', textQuery);
 
     const response = await axios.get(`${BASE_URL}?${params}`);
-
     return {
       vacancyItem: response.data.items.map((item: any) => ({
         id: item.id,
@@ -55,8 +51,6 @@ export const fetchVacancyList = createAsyncThunk<
         employerName: item.employer?.name,
         workFormat: item.work_format[0]?.id,
         vacancyUrl: item.alternate_url,
-        requirement: item.snippet?.requirement,
-        responsibility: item.snippet?.responsibility,
       })),
       pages: response.data.pages,
     };
@@ -64,3 +58,31 @@ export const fetchVacancyList = createAsyncThunk<
     return rejectWithValue('Не удалось загрузить список вакансий');
   }
 });
+
+export const fetchVacancyById = createAsyncThunk<Vacancy, string>(
+  'vacancy/fetchVacancyById', async (id, {rejectWithValue}) => {
+  try {
+
+    const response = await axios.get(`https://api.hh.ru/vacancies/${id}`);
+    const data = response.data
+
+    const vacancyItem = {
+        id: data.id,
+        name: data.name,
+        area: data.area.name,
+        salaryMin: data.salary?.from,
+        salaryMax: data.salary?.to,
+        experience: data.experience?.name,
+        employerName: data.employer?.name,
+        workFormat: data.work_format[0]?.id,
+        vacancyUrl: data.alternate_url,
+        vacancyDescription: data.description,
+    }
+    console.log(vacancyItem)
+    return vacancyItem
+    
+  } catch (e) {
+    return rejectWithValue('Не удалось загрузить вакансию');
+  }
+  }
+)
