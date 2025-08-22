@@ -73,7 +73,7 @@ const VacancyFilter = () => {
             { value: '1', label: 'Москва' },
             { value: '2', label: 'Санкт-Петербург' },
           ]}
-          defaultValue={city}
+          value={city}
           onChange={(value: string | null) => {
             if (value) dispatch(setCity(value));
           }}

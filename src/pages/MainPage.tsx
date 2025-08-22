@@ -2,8 +2,20 @@ import { Title, Stack, Container, Divider, Flex, Grid } from '@mantine/core';
 import SearchBar from '../widgets/SearchBar/SearchBar';
 import VacancyList from '../widgets/VacancyList/VacancyList';
 import VacancyFilter from '../widgets/VacancyFilter/VacancyFilter';
+import { useSearchParams } from 'react-router-dom';
+import { useAppSelector } from '../shared/hooks/redux';
+import { useEffect } from 'react';
 
 const MainPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { city, searchInput } = useAppSelector((state) => state.vacancyReducer);
+
+  useEffect(() => {
+    setSearchParams({ city: city, text: searchInput });
+  }, [city, searchInput, setSearchParams]);
+
+  const s = searchParams.get('city');
+  console.log(s);
   return (
     <div>
       <Container pb={24} pt={24} pl={0} pr={0} size={1000}>

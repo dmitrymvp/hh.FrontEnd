@@ -19,6 +19,11 @@ const workFormatInfo: Record<
   },
 };
 
+interface VacancyCardProp extends Vacancy {
+  textButton: string;
+  isVisibleButton: boolean;
+}
+
 const VacancyCard = ({
   id,
   name,
@@ -29,8 +34,9 @@ const VacancyCard = ({
   area,
   workFormat,
   vacancyUrl,
-
-}: Vacancy) => {
+  textButton,
+  isVisibleButton,
+}: VacancyCardProp) => {
   const format = workFormat ? workFormatInfo[workFormat] : undefined;
 
   const salary = () => {
@@ -78,17 +84,19 @@ const VacancyCard = ({
         {area}
       </Text>
       <Group mt={16}>
-        <Link to={`vacancies/${id}`}>
-          <Button color="#0F0F10">Смотреть вакансию</Button>
-        </Link>
+        {isVisibleButton && (
+          <Link to={`${id}`}>
+            <Button color="#0F0F10">Смотреть вакансию</Button>
+          </Link>
+        )}
         <Button
-          color="#0F0F101A"
-          c="black"
+          color={isVisibleButton ? '#0F0F101A' : '#0F0F10'}
+          c={isVisibleButton ? 'black' : 'white'}
           component="a"
           href={vacancyUrl}
           target="_blank"
         >
-          Откликнуться
+          {textButton}
         </Button>
       </Group>
     </Card>

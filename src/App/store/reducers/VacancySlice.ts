@@ -74,7 +74,7 @@ export const vacancySlice = createSlice({
       })
       .addCase(fetchVacancyById.fulfilled, (state, action) => {
         state.status = 'success';
-        state.currentVacancy = action.payload
+        state.currentVacancy = action.payload;
       })
       .addCase(fetchVacancyById.rejected, (state) => {
         state.status = 'error';

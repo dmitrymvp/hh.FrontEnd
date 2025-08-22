@@ -1,32 +1,45 @@
-import {
-  Anchor,
-  Container,
-  Group,
-  Image,
-  SimpleGrid,
-  Text,
-} from '@mantine/core';
+import { Container, Group, Image, SimpleGrid, Text } from '@mantine/core';
 import logo from '../../shared/assets/image/logo.svg';
 import { IconUserCircle } from '@tabler/icons-react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
   return (
     <Container fluid p={0} bg="white" size="100%">
       <Container size={1440} p={15}>
         <SimpleGrid cols={3} spacing="sm" verticalSpacing="sm">
-          <Anchor w={116} href="/">
+          <Link
+            to="/vacancies"
+            style={{
+              width: '116px',
+            }}
+          >
             <Image src={logo} alt="logo" w={116} fit="contain" />
-          </Anchor>
+          </Link>
           <Group justify="center">
-            <Anchor href="/" underline="never" fw={500} c="black">
+            <NavLink
+              to="/vacancies"
+              style={({ isActive }) => ({
+                fontWeight: '500',
+                color: isActive ? '#000000' : '#0F0F1080',
+                textDecoration: 'none',
+              })}
+            >
               Вакансии FE
-            </Anchor>
-            <Anchor href="#" c="dimmed" underline="never">
+            </NavLink>
+            <NavLink
+              to="/about"
+              style={({ isActive }) => ({
+                fontWeight: '500',
+                color: isActive ? '#000000' : '#0F0F1080',
+                textDecoration: 'none',
+              })}
+            >
               <Group justify="space-between" gap={2}>
                 <IconUserCircle size={18} />
                 <Text fw={500}>Обо мне</Text>
               </Group>
-            </Anchor>
+            </NavLink>
           </Group>
         </SimpleGrid>
       </Container>

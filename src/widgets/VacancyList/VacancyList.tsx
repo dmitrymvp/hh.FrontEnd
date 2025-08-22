@@ -30,6 +30,8 @@ const VacancyList = () => {
               area={item.area}
               workFormat={item.workFormat}
               vacancyUrl={item.vacancyUrl}
+              textButton={`Откликнуться`}
+              isVisibleButton={true}
               // urlCompany={item.urlCompany}
             />
             <Space h="md" />
