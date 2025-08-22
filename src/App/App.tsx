@@ -14,7 +14,6 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Navigate to="/vacancies" replace />} />
           <Route path="/vacancies" element={<MainPage />} />
-          {/* <Route path="vacancy" element={<Vacancy />} /> */}
           <Route path="vacancies/:id" element={<Vacancy />} />
         </Route>
       </Routes>
