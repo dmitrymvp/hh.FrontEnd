@@ -1,7 +1,10 @@
 import { Button, Flex, TextInput } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import { useAppDispatch, useAppSelector } from '../../shared/hooks/redux';
-import { setSearchInput } from '../../App/store/reducers/VacancySlice';
+import {
+  setSearchInput,
+  setSearchQuery,
+} from '../../App/store/reducers/VacancySlice';
 import { fetchVacancyList } from '../../App/store/reducers/VacancyThunk';
 
 const SearchBar = () => {
@@ -10,6 +13,7 @@ const SearchBar = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(setSearchQuery(searchInput));
     dispatch(fetchVacancyList());
   };
 

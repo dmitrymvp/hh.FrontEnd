@@ -32,7 +32,6 @@ const VacancyList = () => {
               vacancyUrl={item.vacancyUrl}
               textButton={`Откликнуться`}
               isVisibleButton={true}
-              // urlCompany={item.urlCompany}
             />
             <Space h="md" />
           </li>

@@ -2,8 +2,44 @@ import { Title, Stack, Container, Divider, Flex, Grid } from '@mantine/core';
 import SearchBar from '../widgets/SearchBar/SearchBar';
 import VacancyList from '../widgets/VacancyList/VacancyList';
 import VacancyFilter from '../widgets/VacancyFilter/VacancyFilter';
+import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../shared/hooks/redux';
+import {
+  setCity,
+  setSearchInput,
+  setSearchQuery,
+  startSkills,
+} from '../App/store/reducers/VacancySlice';
 
 const MainPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useAppDispatch();
+  const { skills, city, searchQuery } = useAppSelector(
+    (state) => state.vacancyReducer,
+  );
+
+  useEffect(() => {
+    const cityParam = searchParams.get('city') || '113';
+    const skillsParam = searchParams.get('skills')?.split(' ') || skills;
+    const searchParam = searchParams.get('search') ?? '';
+
+    console.log(skillsParam);
+    dispatch(setSearchQuery(searchParam));
+    dispatch(setCity(cityParam));
+    dispatch(startSkills(skillsParam));
+  }, [dispatch, searchParams]);
+
+  useEffect(() => {
+    const params: Record<string, string> = {};
+
+    if (skills && skills.length) params.skills = skills.join(' ');
+    if (city) params.city = city;
+    if (searchQuery !== '') params.search = searchQuery;
+
+    setSearchParams(params);
+  }, [city, skills, searchQuery, setSearchParams]);
+
   return (
     <div>
       <Container pb={24} pt={24} pl={0} pr={0} size={1000}>

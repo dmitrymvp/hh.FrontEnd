@@ -13,7 +13,7 @@ export const fetchVacancyList = createAsyncThunk<
   { state: RootState }
 >('vacancy/fetchVacancy', async (_, { rejectWithValue, getState }) => {
   const state = getState();
-  const { searchInput, city, currentPage, skills } = state.vacancyReducer;
+  const { city, currentPage, skills, searchQuery } = state.vacancyReducer;
 
   try {
     const params = new URLSearchParams();
@@ -32,10 +32,10 @@ export const fetchVacancyList = createAsyncThunk<
         : '';
 
     const textQuery =
-      searchInput && skillsQuery
-        ? `"${searchInput.trim()}" AND ${skillsQuery}`
-        : searchInput && !skillsQuery
-          ? `"${searchInput.trim()}"`
+      searchQuery && skillsQuery
+        ? `"${searchQuery.trim()}" AND ${skillsQuery}`
+        : searchQuery && !skillsQuery
+          ? `"${searchQuery.trim()}"`
           : `${skillsQuery}`;
 
     params.append('text', textQuery);

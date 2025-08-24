@@ -9,6 +9,7 @@ export interface VacancyState {
   skills: Array<string>;
   skillInput: string;
   searchInput: string;
+  searchQuery: string;
   city: string;
   pages: number;
   currentPage: number;
@@ -19,9 +20,10 @@ export const initialState: VacancyState = {
   vacancyList: [],
   status: 'idle',
   error: '',
-  skills: ['TypeScript', 'React', 'Redux'],
+  skills: ['React', 'TypeScript', 'Redux'],
   skillInput: '',
   searchInput: '',
+  searchQuery: '',
   city: '113',
   pages: 0,
   currentPage: 1,
@@ -43,11 +45,17 @@ export const vacancySlice = createSlice({
         state.skillInput = '';
       }
     },
+    startSkills(state, action) {
+      state.skills = action.payload;
+    },
     removeSkill(state, action: PayloadAction<string>) {
       state.skills = state.skills.filter((skill) => skill !== action.payload);
     },
     setSearchInput(state, action: PayloadAction<string>) {
       state.searchInput = action.payload;
+    },
+    setSearchQuery(state, action) {
+      state.searchQuery = action.payload;
     },
     setCity(state, action: PayloadAction<string>) {
       state.city = action.payload;
@@ -89,6 +97,8 @@ export const {
   setSearchInput,
   setCity,
   setCurrentPage,
+  startSkills,
+  setSearchQuery,
 } = vacancySlice.actions;
 
 export default vacancySlice.reducer;

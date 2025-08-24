@@ -16,16 +16,19 @@ import {
   removeSkill,
   setCity,
 } from '../../App/store/reducers/VacancySlice';
+import { useSearchParams } from 'react-router-dom';
 
 const VacancyFilter = () => {
-  const { skills, skillInput, city } = useAppSelector(
-    (state) => state.vacancyReducer,
-  );
+  const { skillInput, city } = useAppSelector((state) => state.vacancyReducer);
   const dispatch = useAppDispatch();
+
+  const [searchParams] = useSearchParams();
+
+  const skillsParam = searchParams.get('skills')?.split(' ');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(addSkill());
+    dispatch(addSkill(skillInput));
   };
 
   return (
@@ -52,7 +55,7 @@ const VacancyFilter = () => {
         </form>
         <PillsInput variant="unstyled" mt={12}>
           <Pill.Group>
-            {skills.map((skill) => (
+            {skillsParam?.map((skill) => (
               <Pill
                 withRemoveButton
                 key={skill}
