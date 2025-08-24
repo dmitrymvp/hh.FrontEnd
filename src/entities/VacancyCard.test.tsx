@@ -14,11 +14,14 @@ const mock: Vacancy = {
   area: 'Москва',
   workFormat: WorkFormat.ON_SITE,
   vacancyUrl: 'https://example.com',
+  vacancyDescription: 'Описание',
 };
 
 describe('VacancyCard', () => {
   it('Карточка должна отрендериться', async () => {
-    renderWithProviders(<VacancyCard {...mock} />);
+    renderWithProviders(
+      <VacancyCard {...mock} textButton="текст кнопки" isVisibleButton />,
+    );
 
     expect(screen.getByText(/Frontend/i)).toBeInTheDocument();
     expect(screen.getByText(/100000 - 150000 ₽/i)).toBeInTheDocument();

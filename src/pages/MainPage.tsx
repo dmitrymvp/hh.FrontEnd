@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../shared/hooks/redux';
 import {
   setCity,
-  setSearchInput,
   setSearchQuery,
   startSkills,
 } from '../App/store/reducers/VacancySlice';

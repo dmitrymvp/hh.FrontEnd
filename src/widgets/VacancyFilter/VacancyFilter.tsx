@@ -28,7 +28,7 @@ const VacancyFilter = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(addSkill(skillInput));
+    dispatch(addSkill());
   };
 
   return (
