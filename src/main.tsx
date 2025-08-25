@@ -4,16 +4,16 @@ import './index.css';
 import App from './App/App.tsx';
 import { Provider } from 'react-redux';
 import { setupStore } from './App/store/store.ts';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 const store = setupStore();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/hh.FrontEnd/">
+      <HashRouter basename="/hh.FrontEnd/">
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </StrictMode>,
 );
