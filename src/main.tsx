@@ -11,7 +11,7 @@ const store = setupStore();
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
-      <HashRouter basename="/hh.FrontEnd/">
+      <HashRouter>
         <App />
       </HashRouter>
     </Provider>
