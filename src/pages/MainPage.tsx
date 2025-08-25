@@ -23,7 +23,6 @@ const MainPage = () => {
     const skillsParam = searchParams.get('skills')?.split(' ') || skills;
     const searchParam = searchParams.get('search') ?? '';
 
-    console.log(skillsParam);
     dispatch(setSearchQuery(searchParam));
     dispatch(setCity(cityParam));
     dispatch(startSkills(skillsParam));
