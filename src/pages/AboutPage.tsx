@@ -1,13 +1,21 @@
-import { Button, Text } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { Text, Container, Card, Group, Title } from '@mantine/core';
 
 const AboutPage = () => {
   return (
     <div>
-      <Text m={20}>Этот раздел пока не доступен</Text>
-      <Link to="/">
-        <Button>На главную</Button>
-      </Link>
+      <Container size={658} p={0}>
+        <Card w={658} mt={24} p={24}>
+          <Group mt={8} ta="left">
+            <Title order={2} fw={700} size={26} ta="left">
+              Дмитрий Мищенко
+            </Title>
+            <Text>
+              Привет! Я - Frontend-разработчик. Пишу приложения на React +
+              TypeScript + Redux Toolkit.
+            </Text>
+          </Group>
+        </Card>
+      </Container>
     </div>
   );
 };

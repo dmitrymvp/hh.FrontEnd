@@ -13,3 +13,27 @@ ul {
 .mantine-Tabs-list::before {
   display: none !important;
 }
+
+.link {
+  font-weight: 500;
+  color: #0f0f1080;
+  text-decoration: none;
+}
+
+.active-link {
+  font-weight: 500;
+  color: #000000;
+  text-decoration: none;
+  position: relative;
+}
+
+.active-link::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background-color: #4263eb;
+  border-radius: 50%;
+  position: absolute;
+  right: -10px;
+  top: 10px;
+}
