@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import VacancyCard from '../entities/VacancyCard';
 import { useAppDispatch, useAppSelector } from '../shared/hooks/redux';
 import { Card, Container, Text } from '@mantine/core';
@@ -49,7 +49,8 @@ const Vacancy = () => {
   if (!currentVacancy || status === 'error') {
     return (
       <Container size={659} flex="center" p={20}>
-        <Text>Вакансия не найдена</Text>
+        <Text mb={30}>Вакансия не найдена</Text>
+        <Link to="/">Вернуться на главную</Link>
       </Container>
     );
   }

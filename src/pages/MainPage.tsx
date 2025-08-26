@@ -6,7 +6,6 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../shared/hooks/redux';
 import {
-  setCity,
   setSearchQuery,
   startSkills,
 } from '../App/store/reducers/VacancySlice';
@@ -20,12 +19,10 @@ const MainPage = () => {
   );
 
   useEffect(() => {
-    // const cityParam = searchParams.get('city') || '113';
     const skillsParam = searchParams.get('skills')?.split(' ') || skills;
     const searchParam = searchParams.get('search') ?? '';
 
     dispatch(setSearchQuery(searchParam));
-    // dispatch(setCity(cityParam));
     dispatch(startSkills(skillsParam));
   }, [dispatch, searchParams]);
 
@@ -33,7 +30,6 @@ const MainPage = () => {
     const params: Record<string, string> = {};
 
     if (skills && skills.length) params.skills = skills.join(' ');
-    // if (city) params.city = city;
     if (searchQuery !== '') params.search = searchQuery;
 
     setSearchParams(params);

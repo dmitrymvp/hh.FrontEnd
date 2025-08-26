@@ -4,22 +4,20 @@ import {
   Group,
   Pill,
   PillsInput,
-  Select,
   Text,
   TextInput,
 } from '@mantine/core';
-import { IconMapPin, IconPlus } from '@tabler/icons-react';
+import { IconPlus } from '@tabler/icons-react';
 import { useAppDispatch, useAppSelector } from '../../shared/hooks/redux';
 import {
   setSkillInput,
   addSkill,
   removeSkill,
-  setCity,
 } from '../../App/store/reducers/VacancySlice';
 import { useSearchParams } from 'react-router-dom';
 
 const VacancyFilter = () => {
-  const { skillInput, city } = useAppSelector((state) => state.vacancyReducer);
+  const { skillInput } = useAppSelector((state) => state.vacancyReducer);
   const dispatch = useAppDispatch();
 
   const [searchParams] = useSearchParams();
@@ -67,21 +65,6 @@ const VacancyFilter = () => {
           </Pill.Group>
         </PillsInput>
       </Card>
-      {/* <Card w={317} mt={20} p={24} pos="sticky" top={205}>
-        <Select
-          leftSection={<IconMapPin size={18} />}
-          placeholder="Все города"
-          data={[
-            { value: '113', label: 'Все города' },
-            { value: '1', label: 'Москва' },
-            { value: '2', label: 'Санкт-Петербург' },
-          ]}
-          value={city}
-          onChange={(value: string | null) => {
-            if (value) dispatch(setCity(value));
-          }}
-        />
-      </Card> */}
     </>
   );
 };

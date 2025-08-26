@@ -7,6 +7,8 @@ import Layout from './layout/Layout';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Vacancy from '../pages/Vacancy';
 import CityTabs from '../widgets/CityTabs/CityTabs';
+import Page404 from '../pages/Page404';
+import AboutPage from '../pages/AboutPage';
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
             <Route path="petersburg" element={<CityTabs />} />
           </Route>
           <Route path="vacancies/:id" element={<Vacancy />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
     </MantineProvider>
