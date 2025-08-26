@@ -10,6 +10,7 @@ import {
   setSearchQuery,
   startSkills,
 } from '../App/store/reducers/VacancySlice';
+import CityTabs from '../widgets/CityTabs/CityTabs';
 
 const MainPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -61,6 +62,7 @@ const MainPage = () => {
             <VacancyFilter />
           </Grid.Col>
           <Grid.Col span={8}>
+            <CityTabs/>
             <VacancyList />
           </Grid.Col>
         </Grid>

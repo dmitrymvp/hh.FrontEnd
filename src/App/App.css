@@ -9,3 +9,7 @@ ul {
   padding: 0;
   margin: 0;
 }
+
+.mantine-Tabs-list::before {
+  display: none !important;
+}

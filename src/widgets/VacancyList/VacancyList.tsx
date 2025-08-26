@@ -16,7 +16,7 @@ const VacancyList = () => {
   }, [dispatch, city, currentPage, skills]);
 
   return (
-    <Container size={659} p={0}>
+    <Container size={659} p={0} mt={20}>
       <ul>
         {vacancyList.map((item) => (
           <li key={item.id}>
