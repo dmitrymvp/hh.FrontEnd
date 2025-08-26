@@ -15,17 +15,17 @@ import CityTabs from '../widgets/CityTabs/CityTabs';
 const MainPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useAppDispatch();
-  const { skills, city, searchQuery } = useAppSelector(
+  const { skills, searchQuery } = useAppSelector(
     (state) => state.vacancyReducer,
   );
 
   useEffect(() => {
-    const cityParam = searchParams.get('city') || '113';
+    // const cityParam = searchParams.get('city') || '113';
     const skillsParam = searchParams.get('skills')?.split(' ') || skills;
     const searchParam = searchParams.get('search') ?? '';
 
     dispatch(setSearchQuery(searchParam));
-    dispatch(setCity(cityParam));
+    // dispatch(setCity(cityParam));
     dispatch(startSkills(skillsParam));
   }, [dispatch, searchParams]);
 
@@ -33,11 +33,11 @@ const MainPage = () => {
     const params: Record<string, string> = {};
 
     if (skills && skills.length) params.skills = skills.join(' ');
-    if (city) params.city = city;
+    // if (city) params.city = city;
     if (searchQuery !== '') params.search = searchQuery;
 
     setSearchParams(params);
-  }, [city, skills, searchQuery, setSearchParams]);
+  }, [skills, searchQuery, setSearchParams]);
 
   return (
     <div>
@@ -62,7 +62,7 @@ const MainPage = () => {
             <VacancyFilter />
           </Grid.Col>
           <Grid.Col span={8}>
-            <CityTabs/>
+            <CityTabs />
             <VacancyList />
           </Grid.Col>
         </Grid>

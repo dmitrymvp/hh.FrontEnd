@@ -67,7 +67,7 @@ const VacancyFilter = () => {
           </Pill.Group>
         </PillsInput>
       </Card>
-      <Card w={317} mt={20} p={24} pos="sticky" top={205}>
+      {/* <Card w={317} mt={20} p={24} pos="sticky" top={205}>
         <Select
           leftSection={<IconMapPin size={18} />}
           placeholder="Все города"
@@ -81,7 +81,7 @@ const VacancyFilter = () => {
             if (value) dispatch(setCity(value));
           }}
         />
-      </Card>
+      </Card> */}
     </>
   );
 };
